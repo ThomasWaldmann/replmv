@@ -18,6 +18,9 @@ BE CAREFUL:
 
 Note: convmv (written in Perl) is a similar tool.
       Try both and use whatever works better for you.
+
+:copyright: 2012 Thomas Waldmann <tw@waldmann-edv.de>
+:license: MIT license
 """
 
 dry_run = True  # True means: do not change anything in the filesystem
