@@ -43,6 +43,11 @@ CODING_IN = "iso-8859-1"
 # how it should be (usually your filesystem encoding, often: utf-8)
 CODING_OUT = "utf-8"
 
+verify_first = True  # True means to first verify if the name already
+                     # decodes using CODING_OUT.
+                     # NOTE: only makes sense for UTF codings, single-byte
+                     # codings ALWAYS decode (but not always like you want)
+
 
 def make_trans(chars, enc_in, enc_out):
     """
@@ -133,15 +138,18 @@ def dirwalker(dirname, level=0, map_fn=lambda x: x, verbose=False):
         print "ERR: %s" % str(err)
     else:
         for fname in fnames:
-            new_fname = map_fn(fname)
-            fpath = os.path.join(dirname, fname)
-            new_fpath = os.path.join(dirname, new_fname)
-            if new_fname != fname:
-                if verbose and dry_run:
-                    print "REN: %s -> %s" % (fpath, new_fpath)	    
-                new_fpath = move(fpath, new_fpath)
-                if verbose and not dry_run:
-                    print "REN: %s" % new_fpath
+            if verify_first and verify_string(fname, CODING_OUT):
+                new_fpath = os.path.join(dirname, fname)
+            else:
+                new_fname = map_fn(fname)
+                fpath = os.path.join(dirname, fname)
+                new_fpath = os.path.join(dirname, new_fname)
+                if new_fname != fname:
+                    if verbose and dry_run:
+                        print "REN: %s -> %s" % (fpath, new_fpath)	    
+                    new_fpath = move(fpath, new_fpath)
+                    if verbose and not dry_run:
+                        print "REN: %s" % new_fpath
             if os.path.isdir(new_fpath):
                 dirwalker(new_fpath, level+1, map_fn, verbose)
 
