@@ -4,7 +4,7 @@ replmv
 Replace parts of file/directory names (e.g. to fix wrong non-ASCII characters)
 and rename (move) the files/dirs accordingly.
 
-This script is intended to be run on POSIX filesystems, that have BYTESTRING
+replmv is intended to be run on POSIX filesystems, that have BYTESTRING
 file/directory names. It is NOT tested on / not intended for MS Windows.
 
 replmv works by using a translation map that translates input bytestring
@@ -21,7 +21,8 @@ BE CAREFUL:
   renames (REN) are correct. Also look at the errors (ERR).
 * only if completely sure, run with dry_run = False
 
-Note: convmv (written in Perl) is a similar tool.
+Note: replmv is written in Python.
+      convmv (written in Perl) is a somehow similar tool.
       Try both and use whatever works better for you.
 
 :copyright: 2012 Thomas Waldmann <tw@waldmann-edv.de>
