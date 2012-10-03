@@ -14,9 +14,15 @@ flexible translations and is not limited to recoding character sets.
 Thus, no matter how broken the names in your filesystem are, if you can define
 a mapping (TRANS_TAB), replmv can fix the names for you.
 
+Usage
+-----
+You just edit the parameters at the top of the script (read the comments)
+before running the script. There are (intendedly) no commandline arguments.
+
 BE CAREFUL:
 
-* always use a utf-8 capable editor to edit this file
+* always use a utf-8 capable editor to edit replmv.py
+* it still needs to be valid Python after your edit :)
 * always use dry_run = True first and READ the output, whether all
   renames (REN) are correct. Also look at the errors (ERR).
 * only if completely sure, run with dry_run = False
